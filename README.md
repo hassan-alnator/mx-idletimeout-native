@@ -9,10 +9,14 @@ some apps need to do an action when the user is idle like logging the user out o
 - configurable timeout times.
 - configurable timeout trigger after warning the user.
 - configurable colors.
+- configurable warning taxt.
 - a built in warning modal.
 
 ## Usage
-[step by step instructions]
+
+The widget is fully configurable for all timers ,text ,colors and events.
+
+![config](https://github.com/hassan-alnator/mx-idletimeout-native/raw/master/README.assets/config.png)
 
 ## Issues, suggestions and feature requests
 https://github.com/hassan-alnator/mx-idletimeout-native/issues
