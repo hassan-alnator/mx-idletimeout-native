@@ -16,7 +16,7 @@ some apps need to do an action when the user is idle like logging the user out o
 
 The widget is fully configurable for all timers ,text ,colors and events.
 
-![config](https://github.com/hassan-alnator/mx-idletimeout-native/raw/master/README.assets/config.png)
+![config](https://github.com/hassan-alnator/mx-idletimeout-native/blob/main/README.assets/config.png?raw=true)
 
 ## Issues, suggestions and feature requests
 https://github.com/hassan-alnator/mx-idletimeout-native/issues
