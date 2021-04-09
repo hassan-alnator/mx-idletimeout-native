@@ -1,5 +1,5 @@
 ## Idle Timeout
-some apps need to do an action when the user is idle like logging the user out of the app , mostly user in banking app and apps with sensative data, IdleTimeout is mendix native mobile widget that tracks user activity to decide if the user is idle or not , a timer is created between screen touches and resets when the user touches the screen.
+some apps need to do an action when the user is idle like logging the user out of the app , mostly in banking apps and apps with sensative data, IdleTimeout is mendix native mobile widget that tracks user activity to decide if the user is idle or not , a timer is created between screen touches and resets when the user touches the screen.
 
 ## Features
 - can be user on a layout page.
