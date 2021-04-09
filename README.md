@@ -1,17 +1,21 @@
-## IdelTimeout
-[a user idle tracker to implement app timeout]
+## Idle Timeout
+some apps need to do an action when the user is idle like logging the user out of the app , mostly user in banking app and apps with sensative data, IdleTimeout is mendix native mobile widget that tracks user activity to decide if the user is idle or not , a timer is created between screen touches and resets when the user touches the screen.
 
 ## Features
-[feature highlights]
+- can be user on a layout page.
+- works on all screens of the app when wrapped around the main content area.
+- clean configureble timers.
+- ability to warn the user first about the timeout.
+- configurable timeout times.
+- configurable timeout trigger after warning the user.
+- configurable colors.
+- a built in warning modal.
 
 ## Usage
 [step by step instructions]
 
-## Demo project
-[link to sandbox]
-
 ## Issues, suggestions and feature requests
-[link to GitHub issues]
+https://github.com/hassan-alnator/mx-idletimeout-native/issues
 
 ## Development and contribution
-[specify contribute]
+actively accepting pull requests.
