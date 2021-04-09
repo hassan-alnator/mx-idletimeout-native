@@ -22,6 +22,10 @@ To use the widget on all pages of the app drag it to your layout (Ex NativePhone
 
 ![usage](https://github.com/hassan-alnator/mx-idletimeout-native/blob/main/README.assets/layout.png?raw=true)
 
+This is how the user warning looks on the app.
+
+![phone](https://github.com/hassan-alnator/mx-idletimeout-native/blob/main/README.assets/phone.PNG?raw=true)
+
 ## Issues, suggestions and feature requests
 https://github.com/hassan-alnator/mx-idletimeout-native/issues
 
