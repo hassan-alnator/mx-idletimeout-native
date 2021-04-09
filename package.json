@@ -1,0 +1,31 @@
+{
+  "name": "ideltimeout",
+  "widgetName": "IdelTimeout",
+  "version": "1.0.0",
+  "description": "a user idle tracker to implement app timeout",
+  "copyright": "2020 Mendix Technology BV",
+  "author": "Hasan Alnatour",
+  "config": {
+    "projectPath": "../..//"
+  },
+  "packagePath": "avertra",
+  "scripts": {
+    "start": "npm run dev",
+    "build": "pluggable-widgets-tools build:native",
+    "dev": "pluggable-widgets-tools start:native",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:native"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Hasan Alnatour/ideltimeout/issues"
+  },
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^8.14.0"
+  },
+  "dependencies": {
+    "react-native-awesome-alerts": "^1.4.2"
+  }
+}
