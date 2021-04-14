@@ -1,7 +1,7 @@
 {
   "name": "ideltimeout",
   "widgetName": "IdelTimeout",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a user idle tracker to implement app timeout",
   "copyright": "2020 Mendix Technology BV",
   "author": "Hasan Alnatour",

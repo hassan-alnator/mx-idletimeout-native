@@ -15,7 +15,8 @@ export const IdleTracker = props => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       () => {
-        resetInactivityTimeout()
+        clearTimeout(timerId.current);
+        clearTimeout(warningTimerid.current);
       }
     );
     const keyboardDidHideListener = Keyboard.addListener(
@@ -46,10 +47,9 @@ export const IdleTracker = props => {
   const resetInactivityTimeout = () => {
     clearTimeout(timerId.current);
     clearTimeout(warningTimerid.current);
-    //setVisible(false);
+
     timerId.current = setTimeout(() => {
       // action after user has been detected idle
-
       if (props.warnUser) {
         setVisible(true);
       }
