@@ -1,5 +1,5 @@
 import { createElement, useState, useEffect, useRef } from "react";
-import { View, PanResponder } from "react-native";
+import { View, PanResponder, Keyboard } from "react-native";
 import { Alert } from './Alert';
 
 export const IdleTracker = props => {
@@ -11,11 +11,25 @@ export const IdleTracker = props => {
   )
 
   useEffect(() => {
-    //resetInactivityTimeout();
-
+    
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        resetInactivityTimeout()
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+         resetInactivityTimeout()
+      }
+    );
+    
     return () => {
       clearTimeout(timerId.current);
       clearTimeout(warningTimerid.current);
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
     };
 
   }, []);
