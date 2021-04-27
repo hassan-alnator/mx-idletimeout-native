@@ -33,9 +33,10 @@
                 <returnType type="String" />
             </property>
 
-            <property key="minutes" type="integer" defaultValue="5" required="true">
-                <caption>timeOut</caption>
-                <description>warn user about timeOut in minutes</description>
+            <property key="minutes" type="expression" defaultValue="3"  required="true">
+                <caption>Timeout In Minutes</caption>
+                <description></description>
+                <returnType type="Integer" />
             </property>
 
             <property key="secondsAfterWarning" type="integer" defaultValue="10" required="true">

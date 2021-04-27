@@ -9,9 +9,10 @@ export const IdleTracker = props => {
   const [timeForInactivityInSecond, setTimeForInactivityInSecond] = useState(
     (props.minutes || 5) * 60 * 1000
   )
+  const [lastTick, setLastTick] = useState(new Date())
 
   useEffect(() => {
-    
+
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       () => {
@@ -22,10 +23,10 @@ export const IdleTracker = props => {
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
       () => {
-         resetInactivityTimeout()
+        resetInactivityTimeout()
       }
     );
-    
+
     return () => {
       clearTimeout(timerId.current);
       clearTimeout(warningTimerid.current);
@@ -39,6 +40,7 @@ export const IdleTracker = props => {
     PanResponder.create({
       onStartShouldSetPanResponderCapture: () => {
         // user starts touch
+        setTimeout(() => { setLastTick(new Date()) }, 500)
         resetInactivityTimeout()
       },
     })
@@ -47,6 +49,7 @@ export const IdleTracker = props => {
   const resetInactivityTimeout = () => {
     clearTimeout(timerId.current);
     clearTimeout(warningTimerid.current);
+
 
     timerId.current = setTimeout(() => {
       // action after user has been detected idle
@@ -64,12 +67,23 @@ export const IdleTracker = props => {
     }, timeForInactivityInSecond)
   }
 
+  const onYesPress = () => {
+    const now = new Date();
+    var diff = now.getTime() - lastTick.getTime();
+    const diffMins = Math.round(diff / 60000);
+   
+    if (diffMins > (props.minutes + 1)) {
+      props.onTimeOut();
+    } else {
+      setVisible(false)
+    }
 
-  
+  }
+
 
   return (
     <View style={{ flex: 1 }} {...panResponder.panHandlers}>
-      {visible && <Alert text={props.warningText.value} onPress={() => setVisible(false)} buttonColor={props.buttonColor} /> }
+      {visible && <Alert text={props.warningText.value} onPress={() => onYesPress()} buttonColor={props.buttonColor} />}
       {props.content}
     </View>
   )
