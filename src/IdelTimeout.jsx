@@ -12,7 +12,7 @@ export class IdelTimeout extends Component {
         const { content, minutes, secondsAfterWarning, warnUser, warningText, buttonColor } = this.props;
         return <IdleTracker
             content={content}
-            minutes={minutes.value}
+            minutes={parseInt(minutes.value)}
             warnUser={warnUser}
             warningText={warningText}
             buttonColor={buttonColor}

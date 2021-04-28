@@ -1,8 +1,10 @@
 import { createElement, useState, useEffect, useRef } from "react";
 import { View, PanResponder, Keyboard } from "react-native";
+import { setBaseTrackerToStarted, didBaseTrackerStartBefore } from '../utils/storage';
 import { Alert } from './Alert';
 
 export const IdleTracker = props => {
+  const starterTimerId = useRef(false);
   const timerId = useRef(false);
   const warningTimerid = useRef(false);
   const [visible, setVisible] = useState(false);
@@ -26,12 +28,25 @@ export const IdleTracker = props => {
         resetInactivityTimeout()
       }
     );
+    didBaseTrackerStartBefore().then(tid => {
+      if (!tid) {
+        resetInactivityTimeout();
+      } else {
+        const [trid,wid] = tid.split("|")
+        clearTimeout(parseInt(trid))
+        clearTimeout(parseInt(wid))
+        resetInactivityTimeout();
+      }
+    })
+
 
     return () => {
       clearTimeout(timerId.current);
       clearTimeout(warningTimerid.current);
+      clearTimeout(starterTimerId.current);
       keyboardDidHideListener.remove();
       keyboardDidShowListener.remove();
+
     };
 
   }, []);
@@ -39,9 +54,11 @@ export const IdleTracker = props => {
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponderCapture: () => {
+
         // user starts touch
-        setTimeout(() => { setLastTick(new Date()) }, 500)
-        resetInactivityTimeout()
+        setTimeout(() => { setLastTick(new Date()) }, 500);
+        resetInactivityTimeout();
+
       },
     })
   ).current
@@ -49,7 +66,7 @@ export const IdleTracker = props => {
   const resetInactivityTimeout = () => {
     clearTimeout(timerId.current);
     clearTimeout(warningTimerid.current);
-
+    clearTimeout(starterTimerId.current);
 
     timerId.current = setTimeout(() => {
       // action after user has been detected idle
@@ -64,14 +81,15 @@ export const IdleTracker = props => {
 
       }, (props.secondsAfterWarning || 5) * 1000);
 
-    }, timeForInactivityInSecond)
+    }, timeForInactivityInSecond);
+    setBaseTrackerToStarted(`${timerId.current}|${warningTimerid.current}`);
   }
 
   const onYesPress = () => {
     const now = new Date();
     var diff = now.getTime() - lastTick.getTime();
     const diffMins = Math.round(diff / 60000);
-   
+    //alert(JSON.stringify({ diffMins, minutes: props.minutes, condition: diffMins > (props.minutes + 1), timeoutAt:props.minutes + 1 }))
     if (diffMins > (props.minutes + 1)) {
       props.onTimeOut();
     } else {
